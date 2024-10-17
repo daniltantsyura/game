@@ -26,10 +26,8 @@ function update(){
     updateAllGameObjects();
     objsBounce();
     mainObj.field.borderRepulsion();
-    // foodMove();
     mainObj.allDivs = mainObj.field.elem.querySelectorAll('div');
     
-    // getEdibleArrs();
     sizeUpdate(mainObj.cursor);
     sizeUpdate(mainObj.field);
     spawnEdible('food', 10);
@@ -217,11 +215,6 @@ function destroyFood(destroyer, food){
             mainObj.food.arr.splice(i, 1);
         }
     }
-    // for(let i = 0; i < mainObj.allObj.length; i++){
-    //     if(mainObj.allObj[i] == food){
-    //         mainObj.allObj.slice(i, i);
-    //     }
-    // }
     mainObj.score.textContent++;
     console.log('df');
     if(destroyer.width < 100){
@@ -245,11 +238,6 @@ function destroyPoison(destroyer, poison, healType){
             mainObj.poison.arr.splice(i, 1);
         }
     }
-    // for(let i = 0; i < mainObj.allObj.length; i++){
-    //     if(mainObj.allObj[i] == poison){
-    //         mainObj.allObj.slice(i, i);
-    //     }
-    // }
 }
 
 function spawnEdible(type, size, poisonWave = false){
@@ -304,7 +292,6 @@ function moveToTarget(target, speed = 20 / (this.width / 2)){
 }
 
 function decreasingDistance( distance, speed){
-    // sizeUpdate(target);
 
     let nextTop = this.top -   (distance.diagonal / 100) * speed * distance.top / distance.diagonal;
     let nextLeft = this.left - (distance.diagonal / 100) * speed * distance.left / distance.diagonal;
@@ -402,11 +389,6 @@ function borderRepulsion(){
         if(distanceXRight < 30){
             obj.increasingDistance({top: distanceXRight - 30, left: obj.centerX, diagonal: distanceXRight - 30});
         }
-        // if(distance.diagonal < targetDistance){
-        //     bouncer.increasingDistance(distance, speed);
-        // } else {
-        //     repulsor = false;
-        // }
     }
 }
 
@@ -423,21 +405,16 @@ function bouncing(bouncer = this, repulsor = this.repulsor){
 }
 
 function targetChanger(obj, target){
-    if(obj.elem.classList != ''){
-        // console.log(target);
-    }
     obj.target = target;
     obj.targetChange = false;
     setTimeout(()=>{obj.targetChange = true}, 500);
     sizeUpdate(obj);
-    // obj.moveToTarget(obj.target);
 }
 
 function isEdible(obj, type, func, params){
     if(obj.elem.classList.contains(type)){
         for(let elem of mainObj[type].arr){
             if(elem.identificator == obj.identificator){
-                // console.log(params)
                 func(elem, ...params);
             }
         }
